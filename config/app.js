@@ -21,6 +21,6 @@ connection
     console.log(msgErro);
   });
 
-consign().include("app/controllers").into(app);
+consign().include("app/controllers").then("config/db-connection.js").into(app);
 
 module.exports = app;
