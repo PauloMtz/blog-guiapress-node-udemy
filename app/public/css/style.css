@@ -9,3 +9,17 @@
   margin-top: auto;
   border-top: 1px solid #ccc;
 }
+
+#titulo-lista {
+  border-bottom: 1px solid #ccc;
+}
+
+#btn-add {
+  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#btn-cancelar {
+  border: 1px solid #ccc;
+}
