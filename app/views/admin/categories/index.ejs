@@ -22,7 +22,11 @@
                     <td><%= category.title %></td>
                     <td><%= category.slug %></td>
                     <td><a href="#" class="btn btn-info">Editar</a></td>
-                    <td><a href="#" class="btn btn-danger">Excluir</a></td>
+                    <form action="/admin/categories/delete" method="post">
+                        <input type="hidden" name="id_form" value="<%= category.id %>"/>
+                        <td><button class="btn btn-danger"
+                            onclick="return confirm('Confirma exclusão desse registro?')">Excluir</button></td>
+                    </form>
                 </tr>
                 <% }) %>
             </tbody>

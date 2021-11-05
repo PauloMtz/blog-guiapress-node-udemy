@@ -38,4 +38,27 @@ module.exports = function (application) {
       res.redirect("admin/categories/new");
     }
   });
+
+  // exclui registro
+  application.post("/admin/categories/delete", function (req, res) {
+    var id = req.body.id_form;
+
+    if (id != undefined) {
+      if (!isNaN(id)) {
+        categoryModel
+          .destroy({
+            where: {
+              id: id,
+            },
+          })
+          .then(() => {
+            res.redirect("/admin/categories");
+          });
+      } else {
+        res.redirect("/admin/categories");
+      }
+    } else {
+      res.redirect("/admin/categories");
+    }
+  });
 };
