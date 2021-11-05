@@ -1,0 +1,28 @@
+<%- include ('../../partials/header.ejs') %>
+  <body>
+    <%- include ('../../partials/navbar.ejs') %>
+    
+    <div class="container" id="content">
+        <div class="card">
+            <div class="card-header">
+                <h2>Atualizar categoria</h2>
+            </div>
+            <div class="card-body">
+                <form action="/admin/categories/update" method="post">
+                    <div class="form-group">
+                        <label for="title">Categoria</label>
+                        <input type="hidden" name="id_form" value="<%= category_view.id %>" />
+                        <input type="text" class="form-control col-md-8" id="title" name="title"
+                            value="<%= category_view.title %>"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                    <a href="/admin/categories" class="btn btn-default" id="btn-cancelar">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include ('../../partials/footer.ejs') %>
+
+  </body>
+</html>

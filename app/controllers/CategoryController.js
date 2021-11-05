@@ -61,4 +61,49 @@ module.exports = function (application) {
       res.redirect("/admin/categories");
     }
   });
+
+  // carrega a página de edição do registro
+  application.get("/admin/categories/edit/:id", function (req, res) {
+    // recebe o id enviado pelo formulário
+    var id = req.params.id;
+
+    if (isNaN(id)) {
+      res.redirect("/admin/categories");
+    }
+
+    // procura o id recebido no banco de dados
+    categoryModel
+      .findByPk(id)
+      .then((category) => {
+        if (category != undefined) {
+          // carrega o arquivo lá na pasta views, enviando os dados da categoria
+          res.render("admin/categories/edit", { category_view: category });
+        } else {
+          res.redirect("/admin/categories");
+        }
+      })
+      .catch((erro) => {
+        res.redirect("/admin/categories");
+      });
+  });
+
+  // atualiza o cadastro da categoria
+  application.post("/admin/categories/update", function (req, res) {
+    // recebe o id da categoria a ser atualizada e o campo de título
+    var id = req.body.id_form;
+    var title = req.body.title;
+
+    categoryModel
+      .update(
+        { title: title, slug: slugify(title) },
+        {
+          where: {
+            id: id,
+          },
+        }
+      )
+      .then(() => {
+        res.redirect("/admin/categories");
+      });
+  });
 };

@@ -21,7 +21,7 @@
                 <tr>
                     <td><%= category.title %></td>
                     <td><%= category.slug %></td>
-                    <td><a href="#" class="btn btn-info">Editar</a></td>
+                    <td><a href="/admin/categories/edit/<%= category.id %>" class="btn btn-info">Editar</a></td>
                     <form action="/admin/categories/delete" method="post">
                         <input type="hidden" name="id_form" value="<%= category.id %>"/>
                         <td><button class="btn btn-danger"
