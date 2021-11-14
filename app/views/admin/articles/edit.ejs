@@ -1,0 +1,68 @@
+<%- include ('../../partials/header.ejs') %>
+  <body>
+    <%- include ('../../partials/navbar.ejs') %>
+    
+    <div class="container" id="content">
+        <div class="card">
+            <div class="card-header">
+                <h2>Cadastro artigos</h2>
+            </div>
+            <div class="card-body">
+                <form action="/admin/articles/update" method="post">
+                    <input type="hidden" name="id_form" value="<%= article_view.id %>" />
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="title">Título do artigo</label>
+                            <input type="text" class="form-control" id="title" name="title" 
+                                value="<%= article_view.title %>"/>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="title">Categoria</label>
+                            <select class="form-control" name="category">
+                                <option value="0"></option>
+                                <% categories.forEach((category) => { %>
+                                    <% if (category.id == article_view.categoryId) { %>
+                                    <option value="<%= category.id %>" selected><%= category.title %></option>
+                                    <% } else { %>
+                                    <option value="<%= category.id %>"><%= category.title %></option>
+                                    <% } %>
+                                <% }); %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descrição</label>
+                        <textarea class="form-control" id="description" name="body"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                    <a href="/admin/articles" class="btn btn-default" id="btn-cancelar">Cancelar</a>
+                </form>
+            </div>
+        </div>
+        <div id="body" style="display: none;">
+            <%- article_view.body %>
+        </div>
+    </div>
+
+    <%- include ('../../partials/footer.ejs') %>
+
+    <script src="/tinymce_5.10.1/tinymce/js/tinymce/tinymce.min.js"></script>
+
+    <script>
+        tinymce.init({
+            language: 'pt_BR',
+            selector: "#description",
+            plugins: [
+                'advlist autolink link image lists print preview hr searchreplace wordcount', 
+                'fullscreen insertdatetime media save table paste emoticons'
+            ],
+            init_instance_callback: () => {
+                // pega o conteúdo da div id="body" e joga dentro do tinymce
+                tinymce.get("description").setContent($("#body").html());
+            }
+        })
+    </script>
+
+  </body>
+</html>

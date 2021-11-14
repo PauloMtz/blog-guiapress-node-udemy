@@ -1,9 +1,31 @@
 <%- include ('partials/header.ejs') %>
   <body>
-    <%- include ('partials/navbar.ejs') %>
+    <%- include ('partials/navbarhome.ejs') %>
     
     <div class="container" id="content">
-      <h2>Página inicial</h2>
+      <h2>Principais artigos</h2>
+
+      <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h5 class="display-4">Veja aqui no Guiapress</h5>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+          Ab voluptate debitis fugiat eum, sapiente accusamus tenetur deserunt 
+          cumque modi consectetur nisi, molestiae quos? Quos numquam ullam 
+          incidunt libero voluptatum ad?</p>
+      </div>
+    </div>
+      
+      <% articles.forEach(article => { %>
+      <div class="card">
+        <div class="card-header">
+          <h4><%= article.category.title %></h4>
+        </div>
+        <div class="card-body">
+          <%= article.title %>
+        </div>
+        <div class="card-footer"><a href="/<%= article.slug %>" class="btn btn-default">Leia mais sobre este artigo...</a></div>
+      </div><br>
+      <% }) %>
     </div>
 
     <%- include ('partials/footer.ejs') %>

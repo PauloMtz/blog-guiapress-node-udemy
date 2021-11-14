@@ -23,3 +23,9 @@
 #btn-cancelar {
   border: 1px solid #ccc;
 }
+
+#body-article {
+  margin-top: 20px;
+  min-height: 50vh;
+  border-bottom: 1px solid #ccc;
+}
