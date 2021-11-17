@@ -1,0 +1,34 @@
+<%- include ('../partials/header.ejs') %>
+  <body>
+    <%- include ('../partials/navbarlogin.ejs') %>
+
+    <div class="container col-md-4" id="content-login">
+        <div class="card">
+            <div class="card-header">
+                <h2 style="text-align: center;">Login</h2>
+            </div>
+            <div class="card-body">
+                <form action="/admin/authenticate" method="post">
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="text" class="form-control" id="email" name="email"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <input type="password" class="form-control" id="senha" name="password"/>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary col-md-4">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include ('../partials/footer.ejs') %>
+
+  </body>
+</html>

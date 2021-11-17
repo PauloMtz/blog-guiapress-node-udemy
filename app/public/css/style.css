@@ -29,3 +29,8 @@
   min-height: 50vh;
   border-bottom: 1px solid #ccc;
 }
+
+#content-login {
+  margin-top: 30px;
+  min-height: 70vh;
+}

@@ -1,0 +1,42 @@
+<%- include ('../../partials/header.ejs') %>
+  <body>
+    <%- include ('../../partials/navbar.ejs') %>
+    
+    <div class="container" id="content">
+        <h2 id="titulo-lista">Usuários</h2>
+        <div class="col-md-12" id="btn-add">
+            <a href="/admin/users/new" class="btn btn-success">Adicionar usuário</a>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                <tr>
+                    <td><%= user.name %></td>
+                    <td><%= user.email %></td>
+                    <form action="/admin/users/delete" method="post">
+                        <input type="hidden" name="id_form" value="<%= user.id %>"/>
+                        <td>
+                            <button class="btn btn-danger"
+                                onclick="return confirm('Confirma exclusão desse registro?')">
+                                Excluir
+                            </button>
+                        </td>
+                    </form>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <%- include ('../../partials/footer.ejs') %>
+
+  </body>
+</html>

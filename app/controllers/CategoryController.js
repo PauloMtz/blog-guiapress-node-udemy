@@ -2,22 +2,23 @@ const categoryModel = require("../models/Category");
 // slugify é uma biblioteca do node para trabalhar com slug
 // instalação [ npm install slugify --save ]
 const slugify = require("slugify");
+const auth = require("../middlewares/auth");
 
 module.exports = function (application) {
   // carrega a página de lista
-  application.get("/admin/categories", function (req, res) {
+  application.get("/admin/categories", auth, function (req, res) {
     categoryModel.findAll().then((categories) => {
       res.render("admin/categories/index", { categories: categories });
     });
   });
 
   // carrega a página de cadastro
-  application.get("/admin/categories/new", function (req, res) {
+  application.get("/admin/categories/new", auth, function (req, res) {
     res.render("admin/categories/new");
   });
 
   // cadastra categoria
-  application.post("/admin/categories/save", function (req, res) {
+  application.post("/admin/categories/save", auth, function (req, res) {
     var title = req.body.title;
 
     if (title != undefined) {
@@ -40,7 +41,7 @@ module.exports = function (application) {
   });
 
   // exclui registro
-  application.post("/admin/categories/delete", function (req, res) {
+  application.post("/admin/categories/delete", auth, function (req, res) {
     var id = req.body.id_form;
 
     if (id != undefined) {
@@ -63,7 +64,7 @@ module.exports = function (application) {
   });
 
   // carrega a página de edição do registro
-  application.get("/admin/categories/edit/:id", function (req, res) {
+  application.get("/admin/categories/edit/:id", auth, function (req, res) {
     // recebe o id enviado pelo formulário
     var id = req.params.id;
 
@@ -88,7 +89,7 @@ module.exports = function (application) {
   });
 
   // atualiza o cadastro da categoria
-  application.post("/admin/categories/update", function (req, res) {
+  application.post("/admin/categories/update", auth, function (req, res) {
     // recebe o id da categoria a ser atualizada e o campo de título
     var id = req.body.id_form;
     var title = req.body.title;
